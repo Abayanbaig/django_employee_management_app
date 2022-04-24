@@ -1,0 +1,92 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<!-- Main Section -->
+<main class="projects">
+  <section class="hero-section text-center"style ="background:black ;">
+    <div class="container container--narrow" >
+      <div class="hero-section__box">
+        <h3 style ="color:white ;">Search  Employees<span></span></h3>
+      </div>
+
+      <div class="hero-section__search">
+        <form id="searchForm" class="form" action="" method="get">
+          <div class="form__field">
+            <label for="formInput#search">Search By Projects </label>
+            <input class="input input--text" id="formInput#search" type="text" name="search_query"
+              placeholder="Search Employee by there name..." value="{{search_query}}" />
+          </div>
+          <!-- <input type="text" name="page" value="{{page}}" hidden /> -->
+
+          <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+        </form>
+      </div>
+    </div>
+  </section>
+  <!-- Search Result: DevList -->
+  <section class="projectsList">
+    <div class="container">
+      <div class="grid grid--three">
+
+        {% for p in projects %}
+        <div class="column">
+          <div class="card project">
+            <a href="{% url 'myproject:project' p.id %}" class="project">
+              <img class="project__thumbnail" src="{{ p.img.url }}" alt="project thumbnail" />
+              <div class="card__body">
+                <h3 class="project__title">{{p.name}}</h3>
+                
+                
+                <p class="h6" >Change Details By Clicking Billow </p>
+                  <div class="project__tags">
+                    <br><td><a href="{% url 'myproject:update-project' p.id  %}"><i class="im im-edit"></i> Edit</a><br>
+                    <a href="{% url 'myproject:delete-project' p.id  %}"><i class="im im-edit"></i> Delete</a>
+                    </td>
+                  
+                  </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+
+
+
+
+
+
+      </div>
+    </div>
+  </section>
+
+  {% include 'pagination.html' with queryset=projects custom_range=custom_range %}
+
+  <!-- <div class="pagination">
+    {% if projects.has_other_pages %}
+    <ul class="container">
+      {% if projects.has_previous %}
+      <li><a href="?page={{projects.previous_page_number}}" class="btn page-link">&#10094; Prev</a>{{page}}</li>
+      {% endif %}
+      {% for page in paginator.page_range %}
+      {% if page == projects.number %}
+      <li><a href="?page={{page}}" class="btn btn--sub">{{page}}</a></li>
+      {% else %}
+      <li><a href="?page={{page}}" class="btn">{{page}}</a></li>
+
+      {% endif %}
+      {% endfor %}
+      {% if projects.has_next %}
+      <li><a href="#" class="btn">Next &#10095;</a></li>
+      {% endif %}
+    </ul>
+    {% endif %}
+  </div> -->
+
+</main>
+
+
+
+
+
+{% endblock %}

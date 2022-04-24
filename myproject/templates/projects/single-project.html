@@ -1,0 +1,96 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+
+<!-- Main Section -->
+<main class="singleProject my-md">
+  <div class="container">
+    
+      <div class="column column--1of3">
+        <div class="layout">
+        {% if proj.source_link %}
+        <a class="singleProject__liveLink" href="{{proj.source_link}}" target="_blank"><i
+            class="im im-external-link"></i>Source Code
+        </a>
+        {% endif %}
+
+        {% if proj.demo_link %}
+        <a class="singleProject__liveLink" href="{{proj.demo_link}}" target="_blank"><i
+            class="im im-external-link"></i>Live Demo
+        </a>
+        {% endif %}
+      </div>
+      <div class="column column--2of3">
+        <img class="avatar avatar--xl dev__avatar" src="{{ proj.img.url }}" alt="portfolio thumbnail" />
+        <a href="{% url 'users:single-profile' proj.owner.id  %}"
+          class="singleProject__developer">{{proj.owner.name}}</a>
+        <h2 class="singleProject__title">{{proj.name}}</h2>
+        <h3 class="singleProject__subtitle">Introduction</h3>
+        <div class="singleProject__info">
+          {{proj.introduction}}
+
+        </div>
+        <h5 class="" style="color:#333333;"><b>Address</h5>
+        <div class="singleProject__info">
+          {{proj.address}}
+         
+        </div>
+        
+        <h5 class="" style="color:#333333;"><B>Phone</B></h5>
+        <div class="singleProject__info">
+          {{proj.phone}}
+         
+        </div>
+        <h5 class="" style="color:#333333;"><B>Secondary Phone</B></h5>
+        <div class="singleProject__info">
+          {{proj.secondary_phone}}
+         
+        </div>
+        
+        <h5 class="" style="color:#333333;"><B>School Name</B></h5>
+        <div class="singleProject__info">
+          {{proj.school_name}}
+         
+        </div>
+        <h5 class="" style="color:#333333;"><B>ssc percentage</B></h5>
+        <div class="singleProject__info">
+          {{proj.ssc_percentage}}
+        </div>
+        
+      </div>
+      <h5 class="" style="color:#333333;"><B>Hsc college name</B></h5>
+      <div class="singleProject__info">
+        {{proj.hsc_college_name}}
+      </div>
+    </div>
+
+    <h5 class="" style="color:#333333;"><B>hsc percentage</B></h5>
+    <div class="singleProject__info">
+      {{proj.ssc_percentage}}
+    </div>
+    
+    <h5 class="" style="color:#333333;"><B>college or university name</B></h5>
+    <div class="singleProject__info">
+      {{proj.college_or_university_name}}
+    </div>
+    
+    <h5 class="" style="color:#333333;"><B>Ug specialization</B></h5>
+    <div class="singleProject__info">
+      {{proj.ug_specialization}}
+    </div>
+    
+    <h5 class="" style="color:#333333;"><B>ug percentage</B></h5>
+    <div class="singleProject__info">
+      {{proj.ug_percentage}}
+    </div>
+    
+    <h5 class="" style="color:#333333;"><B>ug percentage</B></h5>
+    <div class="singleProject__info">
+      {{proj.pg_percentage}}
+    </div>
+</main>
+
+
+{% endblock content %}

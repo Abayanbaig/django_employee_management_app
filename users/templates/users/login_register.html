@@ -1,0 +1,129 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+
+{% if page == 'register' %}
+<!-- <form action=" {% url 'users:register' %} " method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+ 
+    
+    <p>
+        <input type="submit" value="Submit">
+    </p>
+
+    <p>
+        Already have an Account?
+        <a href="{% url 'users:login' %} ">Login</a>
+    </p>
+
+</form> -->
+
+<div class="auth" style="background : gray;"> 
+  <div class="card" style="background : #B0C4DE;">
+    <div class="auth__header text-center">
+      <h3><br></h3>
+      
+      <h3>Account SignUp</h3>
+      <p>Create a new developer account</p>
+    </div>
+
+    <form action="{% url 'users:register' %}" method="POST" class="form auth__form">
+      {% csrf_token %}
+      {% for field in form %}
+      <!-- Input:Text -->
+      <div class="form__field">
+        <label for="formInput#text">{{field.label}} </label>
+        {{field}}
+
+
+        <!-- {% if field.help_text %}
+        <small>{{field.help_text}}</small>
+        {% endif %} -->
+
+        {% for error in field.errors %}
+        <p style="color:red">{{error}} </p>
+
+        {% endfor %}
+
+      </div>
+      {% endfor %}
+
+
+      <div class="auth__actions">
+        <input class="btn btn--sub btn--lg" type="submit" value="Sign  In" />
+      </div>
+    </form>
+    <div class="auth__alternative">
+      <p>Already have an Account?</p>
+      <a href="{% url 'users:login' %}">Log In</a>
+    </div>
+  </div>
+</div>
+
+
+{% else %}
+<!-- <form action=" {% url 'users:login' %} " method="POST">
+    {% csrf_token %}
+    <p>
+        UserName:
+        <input type="text" name="username" placeholder="User Name">
+    </p>
+    <p>
+        Password:
+        <input type="password" name="password" placeholder="Password">
+    </p>
+    <p>
+        <input type="submit" value="Submit">
+    </p>
+    Don't have an Account?
+    <a href=" {% url 'users:register' %} ">Register</a>
+
+</form> -->
+
+<div class="auth" style="background : gray;" >
+  <div class="card" style="background : #B0C4DE;">
+    <div class="auth__header text-center"  >
+      <h3><br></h3>
+      <a href="" >
+        <img src="{% static 'images/admin.png' %}" alt="icon" />
+      </a>
+      <h3>Admin Login</h3>
+    </div>
+
+    <form action="" method="POST" class="form auth__form">
+
+      {% csrf_token %}
+      <!-- Input:Email -->
+      <div class="form__field">
+        <label for="formInput#text">Admin : </label>
+        <input class="input input--text" id="formInput#text" type="text" name="username"
+          placeholder="Enter Admin name..." />
+      </div>
+
+      <!-- Input:Password -->
+      <div class="form__field">
+        <label for="formInput#password">Password: </label>
+        <input class="input input--password" id="formInput#passowrd" type="password" name="password"
+          placeholder="••••••••" />
+      </div>
+      <div class="auth__actions">
+        <input class="btn btn--sub btn--lg" type="submit" value="Log In" />
+        <a href="{% url 'password_reset' %}">Forget Password?</a>
+      </div>
+    </form>
+    <div class="auth__alternative">
+      <p>Manage Employees Data by Creating Account.</p>
+      <a href="{% url 'users:register' %}">Register</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endif %}
+
+
+{% endblock %}
